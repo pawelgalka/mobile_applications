@@ -1,16 +1,15 @@
 //
-//  ViewController.swift
-//  SingleViewApp
+//  DetailViewController.swift
+//  Master-DetailApp
 //
 //  Created by Paweł Gałka on 02.06.2020.
 //  Copyright © 2020 Paweł Gałka. All rights reserved.
 //
 
-
 import UIKit
 
-class ViewController: UIViewController {
-    
+class DetailViewController: UIViewController {
+
     @IBOutlet weak var MainStack: UIStackView!
     
     @IBAction func Prev(_ sender: UIButton) {
@@ -39,44 +38,31 @@ class ViewController: UIViewController {
     @IBOutlet weak var RainForecast: UILabel!
     @IBOutlet weak var AirPressure: UILabel!
     
-    let imageEndpointURL = "https://www.metaweather.com/static/img/weather/png/IMAGE.png"
-    let apiPattern = "https://www.metaweather.com/api/location/523920/"
-    var forecasts = [ForecastItem]()
+    let imageEndpointURL = "https://www.metaweather.com/static/img/weather/png/64/IMAGE.png"
+    let apiPattern = "https://www.metaweather.com/api/location/"
+    var cityData : CellData?{
+        didSet{
+            loadWeather(0)
+        }
+    }
     
     var id = 0
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        fetchWeather{() in self.loadWeather(0)}
-        
-    }
-    
-    func fetchWeather(result: @escaping () -> ()){
-        let url = URL(string: apiPattern)!
-        let task = URLSession.shared.dataTask(with: url){(data, response, error) in
-            guard let data = data, error == nil else {
-                print("Connection error")
-                return
-            }
-            do{
-                let json = try JSONDecoder().decode(Forecast.self, from: data)
-                self.forecasts = json.consolidated_weather!
-                print("Loaded")
-                result()
-            } catch let jsonErr{
-                print("Error serializing json \(jsonErr)")
-            }
+        if self.cityData != nil {
+            loadWeather(0)
         }
-        task.resume()
         
     }
     
     
     func loadWeather(_ id: Int) -> Void{
-        let forecast = forecasts[id]
+        let forecast = self.cityData!.forecasts![id]
         
         DispatchQueue.main.async {
+            self.Cityname.text = self.cityData?.name
             self.Cond.text = forecast.weather_state_name
             self.CurrentDay.text = forecast.applicable_date
             self.MinTemp.text = String(format:"%.1f",forecast.min_temp!) + " °C"
@@ -108,26 +94,7 @@ class ViewController: UIViewController {
         }
         
     }
+
+
 }
 
-struct ForecastItem : Decodable{
-    let id: Int
-    let weather_state_name: String?
-    let weather_state_abbr: String?
-    let wind_direction_compass: String?
-    let created: String?
-    let applicable_date: String?
-    let min_temp: Double?
-    let max_temp: Double?
-    let the_temp: Double?
-    let wind_speed: Double?
-    let wind_direction: Double?
-    let air_pressure: Double?
-    let humidity: Int?
-    let visibility: Double?
-    let predictability: Int?
-}
-
-struct Forecast : Decodable{
-    let consolidated_weather : [ForecastItem]?
-}
