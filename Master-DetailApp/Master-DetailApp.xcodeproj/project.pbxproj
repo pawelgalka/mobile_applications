@@ -14,6 +14,7 @@
 		BB6E8F3224869F160051F5FE /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = BB6E8F3124869F160051F5FE /* Assets.xcassets */; };
 		BB6E8F3524869F160051F5FE /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = BB6E8F3324869F160051F5FE /* LaunchScreen.storyboard */; };
 		BB6E8F3D2486AAED0051F5FE /* ApiConnector.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB6E8F3C2486AAED0051F5FE /* ApiConnector.swift */; };
+		BBC3A1232486F25F0027E023 /* ModalController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBC3A1222486F25F0027E023 /* ModalController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -26,6 +27,7 @@
 		BB6E8F3424869F160051F5FE /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		BB6E8F3624869F160051F5FE /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		BB6E8F3C2486AAED0051F5FE /* ApiConnector.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApiConnector.swift; sourceTree = "<group>"; };
+		BBC3A1222486F25F0027E023 /* ModalController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ModalController.swift; path = ../../../../.Trash/ModalController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -66,6 +68,7 @@
 				BB6E8F3324869F160051F5FE /* LaunchScreen.storyboard */,
 				BB6E8F3624869F160051F5FE /* Info.plist */,
 				BB6E8F3C2486AAED0051F5FE /* ApiConnector.swift */,
+				BBC3A1222486F25F0027E023 /* ModalController.swift */,
 			);
 			path = "Master-DetailApp";
 			sourceTree = "<group>";
@@ -143,6 +146,7 @@
 			files = (
 				BB6E8F2D24869F140051F5FE /* DetailViewController.swift in Sources */,
 				BB6E8F2B24869F140051F5FE /* MasterViewController.swift in Sources */,
+				BBC3A1232486F25F0027E023 /* ModalController.swift in Sources */,
 				BB6E8F3D2486AAED0051F5FE /* ApiConnector.swift in Sources */,
 				BB6E8F2924869F140051F5FE /* AppDelegate.swift in Sources */,
 			);

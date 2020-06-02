@@ -23,6 +23,7 @@ class DetailViewController: UIViewController {
         
     }
     
+    @IBOutlet weak var navItem: UINavigationItem!
     @IBOutlet weak var PrevButton: UIButton!
     @IBOutlet weak var NextButton: UIButton!
     
@@ -40,6 +41,7 @@ class DetailViewController: UIViewController {
     
     let imageEndpointURL = "https://www.metaweather.com/static/img/weather/png/64/IMAGE.png"
     let apiPattern = "https://www.metaweather.com/api/location/"
+    
     var cityData : CellData?{
         didSet{
             loadWeather(0)
@@ -63,6 +65,7 @@ class DetailViewController: UIViewController {
         
         DispatchQueue.main.async {
             self.Cityname.text = self.cityData?.name
+            self.navItem.title = self.cityData?.name
             self.Cond.text = forecast.weather_state_name
             self.CurrentDay.text = forecast.applicable_date
             self.MinTemp.text = String(format:"%.1f",forecast.min_temp!) + " °C"

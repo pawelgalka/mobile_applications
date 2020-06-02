@@ -10,6 +10,12 @@ import UIKit
 
 class MasterViewController: UITableViewController {
 
+    @IBOutlet weak var addCity: UIButton!
+    
+    @IBAction func touch(_ sender: UIButton) {
+        print("touched")
+        
+    }
     var detailViewController: DetailViewController? = nil
     var objects = [Any]()
     var apiConnector: ApiConnector = ApiConnector()
@@ -20,8 +26,6 @@ class MasterViewController: UITableViewController {
         navigationItem.leftBarButtonItem = editButtonItem
 
         fillInitialCities()
-        let addButton = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(insertNewObject(_:)))
-        navigationItem.rightBarButtonItem = addButton
         if let split = splitViewController {
             let controllers = split.viewControllers
             detailViewController = (controllers[controllers.count-1] as! UINavigationController).topViewController as? DetailViewController
@@ -32,14 +36,6 @@ class MasterViewController: UITableViewController {
         clearsSelectionOnViewWillAppear = splitViewController!.isCollapsed
         super.viewWillAppear(animated)
     }
-
-    @objc
-    func insertNewObject(_ sender: Any) {
-        //        TODO: modal lookup of cities
-//        objects.insert("A", at: 0)
-//        let indexPath = IndexPath(row: 0, section: 0)
-//        tableView.insertRows(at: [indexPath], with: .automatic)
-    }
     
     func fillInitialCities() -> Void {
         print("FILLING")
@@ -47,7 +43,6 @@ class MasterViewController: UITableViewController {
         cities.forEach{cityName in
             print(cityName)
             self.apiConnector.queryLocation(city: cityName, completion: { array in
-                
                 if (array.count == 0){
                     return
                 }
@@ -71,6 +66,16 @@ class MasterViewController: UITableViewController {
         })
     }
 
+    func fetchNewCity(_ cityName: String){
+        self.apiConnector.queryLocation(city: cityName, completion: { array in
+            if (array.count == 0){
+                return
+            }
+            self.fillCityWeatherState(array)
+        })
+        
+    }
+    
     // MARK: - Segues
 
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
