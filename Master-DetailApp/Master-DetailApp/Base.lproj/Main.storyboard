@@ -376,10 +376,11 @@
                         </connections>
                     </tableView>
                     <navigationItem key="navigationItem" title="Paweł Gałka" id="Zdf-7t-Un8">
-                        <barButtonItem key="rightBarButtonItem" style="plain" id="cxg-pO-tcz">
+                        <barButtonItem key="rightBarButtonItem" id="cxg-pO-tcz">
                             <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="n40-0h-QEc">
                                 <rect key="frame" x="311" y="7" width="83" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" name=".AppleSystemUIFont" family=".AppleSystemUIFont" pointSize="15"/>
                                 <state key="normal" title="Add city"/>
                                 <connections>
                                     <action selector="touch:" destination="7bK-jq-Zjz" eventType="touchUpInside" id="67d-FE-8W5"/>
