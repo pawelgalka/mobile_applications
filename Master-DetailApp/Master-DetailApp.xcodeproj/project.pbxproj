@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		BB08B8332487187300F2225D /* ModalController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB08B8322487187200F2225D /* ModalController.swift */; };
+		BB4B139C2487A46C005360F7 /* DesignableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB4B139B2487A46C005360F7 /* DesignableView.swift */; };
 		BB6E8F2924869F140051F5FE /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB6E8F2824869F140051F5FE /* AppDelegate.swift */; };
 		BB6E8F2B24869F140051F5FE /* MasterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB6E8F2A24869F140051F5FE /* MasterViewController.swift */; };
 		BB6E8F2D24869F140051F5FE /* DetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB6E8F2C24869F140051F5FE /* DetailViewController.swift */; };
@@ -19,6 +20,7 @@
 
 /* Begin PBXFileReference section */
 		BB08B8322487187200F2225D /* ModalController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ModalController.swift; sourceTree = "<group>"; };
+		BB4B139B2487A46C005360F7 /* DesignableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DesignableView.swift; sourceTree = "<group>"; };
 		BB6E8F2524869F140051F5FE /* Master-DetailApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Master-DetailApp.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		BB6E8F2824869F140051F5FE /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		BB6E8F2A24869F140051F5FE /* MasterViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MasterViewController.swift; sourceTree = "<group>"; };
@@ -69,6 +71,7 @@
 				BB6E8F2E24869F140051F5FE /* Main.storyboard */,
 				BB6E8F2A24869F140051F5FE /* MasterViewController.swift */,
 				BB08B8322487187200F2225D /* ModalController.swift */,
+				BB4B139B2487A46C005360F7 /* DesignableView.swift */,
 			);
 			path = "Master-DetailApp";
 			sourceTree = "<group>";
@@ -146,6 +149,7 @@
 			files = (
 				BB6E8F2D24869F140051F5FE /* DetailViewController.swift in Sources */,
 				BB6E8F2B24869F140051F5FE /* MasterViewController.swift in Sources */,
+				BB4B139C2487A46C005360F7 /* DesignableView.swift in Sources */,
 				BB08B8332487187300F2225D /* ModalController.swift in Sources */,
 				BB6E8F3D2486AAED0051F5FE /* ApiConnector.swift in Sources */,
 				BB6E8F2924869F140051F5FE /* AppDelegate.swift in Sources */,

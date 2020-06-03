@@ -44,6 +44,9 @@ class DetailViewController: UIViewController {
     
     var cityData : CellData?{
         didSet{
+            DispatchQueue.main.async {
+                self.navItem.title = self.cityData?.name
+            }
             loadWeather(0)
         }
     }
@@ -65,7 +68,6 @@ class DetailViewController: UIViewController {
         
         DispatchQueue.main.async {
             self.Cityname.text = self.cityData?.name
-            self.navItem.title = self.cityData?.name
             self.Cond.text = forecast.weather_state_name
             self.CurrentDay.text = forecast.applicable_date
             self.MinTemp.text = String(format:"%.1f",forecast.min_temp!) + " °C"
