@@ -8,6 +8,9 @@
 
 import Foundation
 import UIKit
+import MapKit
+import CoreLocation
+
 
 class ModalController: UIViewController{
     
@@ -16,9 +19,15 @@ class ModalController: UIViewController{
     var apiConnector: ApiConnector = ApiConnector()
     
     var parentController: UIViewController?
-    
+
+    var manager:CLLocationManager!
+
+    var geocoder = CLGeocoder()
+
     @IBOutlet weak var searchText: UITextField!
     @IBOutlet weak var searchButton: UIButton!
+    @IBOutlet weak var locationButton: UIButton!
+    @IBOutlet weak var actualPosition: UILabel!
     
     @IBOutlet weak var tableView: UITableView!
     
@@ -27,9 +36,14 @@ class ModalController: UIViewController{
             print(array)
             self.searchResults = array
             DispatchQueue.main.async {
+                self.actualPosition?.text = "Search results:"
                 self.tableView.reloadData()
             }
         }
+    }
+    
+    @IBAction func fetchCurrentLocation(_ sender: Any) {
+        manager.requestLocation()        
     }
     
     @IBAction func backToMaster(_ sender: Any){
@@ -40,6 +54,10 @@ class ModalController: UIViewController{
         super.viewDidLoad()
         tableView.delegate = self
         tableView.dataSource = self
+        manager = CLLocationManager()
+        manager.delegate = self
+        manager.desiredAccuracy = kCLLocationAccuracyBest
+        manager.requestWhenInUseAuthorization()
     }
     
     override func didReceiveMemoryWarning() {
@@ -47,7 +65,7 @@ class ModalController: UIViewController{
     }
 }
 
-extension ModalController: UITableViewDelegate, UITableViewDataSource{
+extension ModalController: UITableViewDelegate, UITableViewDataSource, CLLocationManagerDelegate{
     func numberOfSections(in tableView: UITableView) -> Int {
         return 1
     }
@@ -68,12 +86,24 @@ extension ModalController: UITableViewDelegate, UITableViewDataSource{
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        print(searchResults[indexPath.row].title)
-        (presentingViewController?.children[0] as? MasterViewController)?.fetchNewCity(searchResults[indexPath.row].title)
+        (presentingViewController?.children[0] as? MasterViewController)?.fetchNewCity(cityName: searchResults[indexPath.row].title!)
         dismiss(animated: false) {}
-
-        
     }
-
     
+    func locationManager(_ manager: CLLocationManager, didFailWithError error: Error) {
+        print("Error \(error.localizedDescription)")
+    }
+    
+    func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
+        let current = manager.location!.coordinate
+        geocoder.reverseGeocodeLocation(manager.location!) { (placemarks, error) in
+            self.apiConnector.queryLocation(latt: String(describing: current.latitude), long: String(describing: current.longitude), completion: { locationArray in
+                self.searchResults = Array(locationArray[0..<1])
+                DispatchQueue.main.async {
+                    self.actualPosition?.text = "Your actual position is:"
+                    self.tableView.reloadData()
+                }
+            })
+        }
+    }
 }

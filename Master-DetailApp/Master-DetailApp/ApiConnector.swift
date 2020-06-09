@@ -10,11 +10,31 @@ import Foundation
 
 class ApiConnector {
     let locationQueryEndpoint = "https://www.metaweather.com/api/location/search/?query="
+    let locationQueryEndpointGeo = "https://www.metaweather.com/api/location/search/?lattlong="
     let weatherQueryEndpoint = "https://www.metaweather.com/api/location/"
     let imageQueryEndpoint = "https://www.metaweather.com/static/img/weather/png/64/IMAGE.png"
 
     func queryLocation(city: String, completion: @escaping ([Location]) -> ()){
-        let urlString = "\(locationQueryEndpoint)\(city)"
+        let urlString = "\(locationQueryEndpoint)\(city)".addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed)
+        let url = URL(string: urlString!)!
+        let task = URLSession.shared.dataTask(with: url){(data, response, error) in
+            guard let data = data, error == nil else {
+                print("Connection error")
+                return
+            }
+            do{
+                let json = try JSONDecoder().decode([Location].self, from: data)
+                print("Loaded")
+                completion(json)
+            } catch let jsonErr{
+                print("Error serializing json \(jsonErr)")
+            }
+        }
+        task.resume()
+    }
+    
+    func queryLocation(latt: String, long: String, completion: @escaping ([Location]) -> ()){
+        let urlString = "\(locationQueryEndpointGeo)\(latt),\(long)"
         let url = URL(string: urlString)!
         let task = URLSession.shared.dataTask(with: url){(data, response, error) in
             guard let data = data, error == nil else {
@@ -69,10 +89,19 @@ class ApiConnector {
 }
 
 struct Location : Decodable{
-    let title: String
+    let title: String?
     let location_type : String?
     let woeid : Int?
     let latt_long: String?
+    init (title: String? = nil,
+          latt_long: String? = nil,
+          location_type: String? = nil,
+          woeid: Int? = nil){
+        self.title = title
+        self.location_type = location_type
+        self.latt_long = latt_long
+        self.woeid = woeid
+    }
 }
 
 struct ForecastItem : Decodable{

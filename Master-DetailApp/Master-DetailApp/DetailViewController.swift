@@ -99,6 +99,14 @@ class DetailViewController: UIViewController {
         }
         
     }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "showMap" {
+            let destination = segue.destination as! MapViewController
+            destination.latt = self.cityData?.latt
+            destination.long = self.cityData?.long
+        }
+    }
 
 
 }

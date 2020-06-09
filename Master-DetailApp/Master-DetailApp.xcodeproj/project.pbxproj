@@ -16,6 +16,7 @@
 		BB6E8F3224869F160051F5FE /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = BB6E8F3124869F160051F5FE /* Assets.xcassets */; };
 		BB6E8F3524869F160051F5FE /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = BB6E8F3324869F160051F5FE /* LaunchScreen.storyboard */; };
 		BB6E8F3D2486AAED0051F5FE /* ApiConnector.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB6E8F3C2486AAED0051F5FE /* ApiConnector.swift */; };
+		BBC9EAA5248FD3FB0022A0AE /* MapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BBC9EAA4248FD3FB0022A0AE /* MapViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -30,6 +31,7 @@
 		BB6E8F3424869F160051F5FE /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		BB6E8F3624869F160051F5FE /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		BB6E8F3C2486AAED0051F5FE /* ApiConnector.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApiConnector.swift; sourceTree = "<group>"; };
+		BBC9EAA4248FD3FB0022A0AE /* MapViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -72,6 +74,7 @@
 				BB6E8F2A24869F140051F5FE /* MasterViewController.swift */,
 				BB08B8322487187200F2225D /* ModalController.swift */,
 				BB4B139B2487A46C005360F7 /* DesignableView.swift */,
+				BBC9EAA4248FD3FB0022A0AE /* MapViewController.swift */,
 			);
 			path = "Master-DetailApp";
 			sourceTree = "<group>";
@@ -153,6 +156,7 @@
 				BB08B8332487187300F2225D /* ModalController.swift in Sources */,
 				BB6E8F3D2486AAED0051F5FE /* ApiConnector.swift in Sources */,
 				BB6E8F2924869F140051F5FE /* AppDelegate.swift in Sources */,
+				BBC9EAA5248FD3FB0022A0AE /* MapViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

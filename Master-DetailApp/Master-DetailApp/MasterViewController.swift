@@ -54,6 +54,9 @@ class MasterViewController: UITableViewController {
         let foundCityWeather = array[0]
         var cellData = CellData()
         cellData.name = foundCityWeather.title
+        var prepared = foundCityWeather.latt_long?.components(separatedBy: ",")
+        cellData.latt = prepared![0]
+        cellData.long = prepared![1]
         self.apiConnector.queryWeather(woeid: foundCityWeather.woeid!, completion: { weather in
             cellData.forecasts = weather
             cellData.temp = String(format:"%.1f",weather[0].the_temp!) + " °C"
@@ -66,7 +69,7 @@ class MasterViewController: UITableViewController {
         })
     }
 
-    func fetchNewCity(_ cityName: String){
+    func fetchNewCity(cityName: String){
         self.apiConnector.queryLocation(city: cityName, completion: { array in
             if (array.count == 0){
                 return
@@ -132,16 +135,22 @@ class MasterViewController: UITableViewController {
 struct CellData {
     var name : String?
     var temp : String?
+    var latt : String?
+    var long : String?
     var image : UIImage?
     var forecasts : [ForecastItem]?
     init (name: String? = nil,
           temp: String? = nil,
+          latt: String? = nil,
+          long: String? = nil,
           image: UIImage? = nil,
           forecasts: [ForecastItem]? = nil){
         self.name = name
         self.temp = temp
         self.image = image
         self.forecasts = forecasts
+        self.long = long
+        self.latt = latt
     }
 }
 
